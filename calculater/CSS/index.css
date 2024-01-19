@@ -1,0 +1,22 @@
+.nova {
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: aquamarine;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.nova .button-block button {
+    height: 40px;
+    width: 40px;
+    margin: 10px;
+}
+
+.inputs-block label {
+    display: block;
+    padding: 10px;
+}
+.input-block{
+    display: inline-block;
+}
