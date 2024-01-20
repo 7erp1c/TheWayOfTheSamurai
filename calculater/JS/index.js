@@ -1,48 +1,38 @@
-let bPlus = document.getElementById('bPlus');
-let bMinus = document.getElementById('bMinus');
-let bMultiply = document.getElementById('bMultiply');
-let bDevide = document.getElementById('bDevide');
+var operationsButtons = document.getElementsByClassName('button-blockClass');
 
-function onButtonPlusClick() {
-    let input1 = document.getElementById('number1');
-    let input2 = document.getElementById('number2');
-    let number1 = Number(input1.value);
-    let number2 = Number(input2.value);
 
-    let result = number1+number2;
+let input1 = document.getElementById('number1');
+let input2 = document.getElementById('number2');
+
+
+function makeOperation(operationCode) {
+    var number1 = Number(input1.value);
+    var number2 = Number(input2.value);
+    if (operationCode === '+') {
+        var result = number1 + number2;
+    } else if (operationCode === '-') {
+        var result = number1 - number2;
+    } else if (operationCode === '*') {
+        var result = number1 * number2;
+    } else if (operationCode === '/') {
+        var result = number1 / number2;
+    } else {
+        window.alert('Operation is no found')
+    }
     window.alert(result);
 }
 
-function onButtonMinusClick() {
-    let input1 = document.getElementById('number1');
-    let input2 = document.getElementById('number2');
-    let number1 = Number(input1.value);
-    let number2 = Number(input2.value);
-
-    let result = number1-number2;
-    window.alert(result);
+function onOperationButtonClick(eventObject) {
+    var clickedElement = eventObject.currentTarget;
+    var operation = clickedElement.innerHTML;
+    makeOperation(operation);
 }
 
-function onButtonMultiplyClick() {
-    let input1 = document.getElementById('number1');
-    let input2 = document.getElementById('number2');
-    let number1 = Number(input1.value);
-    let number2 = Number(input2.value);
 
-    let result = number1*number2;
-    window.alert(result);
+
+for (let i = 0; i < operationsButtons.length; i++) {
+    var batton = operationsButtons[i];
+    batton.addEventListener('click', onOperationButtonClick);
 }
 
-function onButtonDevideClick() {
-    let input1 = document.getElementById('number1');
-    let input2 = document.getElementById('number2');
-    let number1 = Number(input1.value);
-    let number2 = Number(input2.value);
 
-    let result = number1 / number2;
-    window.alert(result);
-}
-bPlus.addEventListener('click', onButtonPlusClick);
-bMinus.addEventListener('click', onButtonMinusClick);
-bMultiply.addEventListener('click', onButtonMultiplyClick);
-bDevide.addEventListener('click', onButtonDevideClick);
