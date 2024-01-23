@@ -1,14 +1,27 @@
-var slider = {
+var slider1 = {
     imagesUrls: [],
     currentImageIndex: 0,
-    showPrevBtn: document.getElementById('show-prev'),
-    showNextBtn: document.getElementById('show-next'),
-    slideImage: document.getElementById('slide-image'),
+    showPrevBtn: null,
+    showNextBtn: null,
+    slideImage: null,
 
-    start: function () {
+    start: function (elId) {
+        var that = this;
+        var elSelector = '#'+ elId;
+        var el = document.querySelector(elSelector);
+
+
+        this.showPrevBtn = el.querySelector('.show-prev');
+        this.showNextBtn = el.querySelector('.show-next');
+        this.slideImage = el.querySelector('.slide-ing');
+
         //subscribe to events
-        this.showPrevBtn.addEventListener("click", this.onShowPrevBtnClick);
-        this.showNextBtn.addEventListener("click", this.onShowNextBtnClick);
+        this.showPrevBtn.addEventListener("click", function (e) {
+            that.onShowPrevBtnClick();
+        });
+        this.showNextBtn.addEventListener("click", function (e) {
+            that.onShowNextBtnClick();
+        });
         //create image array
         this.imagesUrls = ['https://mcn-images.bauersecure.com/wp-images/3224/1440x960/dingas053-01.jpg?mode=max&quality=90&scale=down',
             'https://buygiroscooter.ru/wp-content/uploads/c/e/9/ce9d9c09238b96fcde713d90086cfcf7.jpeg',
@@ -20,7 +33,7 @@ var slider = {
         this.showPrevBtn.disabled = true;
     },
 
-    onShowPrevBtnClick: function () {
+    onShowPrevBtnClick: function (e) {
         this.currentImageIndex--;
         this.slideImage.src = this.imagesUrls[this.currentImageIndex]
         this.showNextBtn.disabled = false;
@@ -30,7 +43,7 @@ var slider = {
         }
     },
 
-    onShowNextBtnClick: function () {
+    onShowNextBtnClick: function (e) {
         this.currentImageIndex++;
         this.slideImage.src = this.imagesUrls[this.currentImageIndex];
         this.showPrevBtn.disabled = false;
