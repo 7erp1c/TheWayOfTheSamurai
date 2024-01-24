@@ -1,13 +1,14 @@
-var slider1 = {
-    imagesUrls: [],
-    currentImageIndex: 0,
-    showPrevBtn: null,
-    showNextBtn: null,
-    slideImage: null,
+function Slider() {
 
-    start: function (elId) {
+        this.imagesUrls = [];
+        this.currentImageIndex = 0;
+        this.showPrevBtn = null;
+        this.showNextBtn = null;
+        this.slideImage = null;
+
+    this.start = function (elId) {
         var that = this;
-        var elSelector = '#'+ elId;
+        var elSelector = '#' + elId;
         var el = document.querySelector(elSelector);
 
 
@@ -31,9 +32,8 @@ var slider1 = {
 
         this.slideImage.src = this.imagesUrls[this.currentImageIndex];
         this.showPrevBtn.disabled = true;
-    },
-
-    onShowPrevBtnClick: function (e) {
+    };
+    this.onShowPrevBtnClick = function (e) {
         this.currentImageIndex--;
         this.slideImage.src = this.imagesUrls[this.currentImageIndex]
         this.showNextBtn.disabled = false;
@@ -41,9 +41,8 @@ var slider1 = {
         if (this.currentImageIndex === (0)) {
             this.showPrevBtn.disabled = true;
         }
-    },
-
-    onShowNextBtnClick: function (e) {
+    };
+    this.onShowNextBtnClick = function (e) {
         this.currentImageIndex++;
         this.slideImage.src = this.imagesUrls[this.currentImageIndex];
         this.showPrevBtn.disabled = false;
@@ -51,6 +50,14 @@ var slider1 = {
         if (this.currentImageIndex === (this.imagesUrls.length - 1)) {
             this.showNextBtn.disabled = true;
         }
-    }
-
+    };
 }
+
+
+
+
+
+
+
+
+
