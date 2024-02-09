@@ -1,6 +1,6 @@
 
 import express, { Request, Response } from 'express';
-const app = express();
+export const app = express();
 const port = process.env.PORT || 3001;
 
 const products = [{id: 1, title:"tomato"},{id: 2, title:"orange"}]
