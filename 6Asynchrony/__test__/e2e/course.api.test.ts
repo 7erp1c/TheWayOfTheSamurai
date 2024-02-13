@@ -1,23 +1,28 @@
 import request from 'supertest'
-import {app, HTTP_STATUSES} from '../../src'
-import {CourseCreateModel} from "../../src/models/Course_Create_Model";
+import {CourseCreateModel} from "../../src/models/Course_Create_Model"
+import {CourseUpdateModel} from '../../src/models/Course_Update_Model'
+import {app} from "../../src/app";
+import {HTTP_STATUSES} from "../../src/utils";
 
+const getRequest = () => {
+    return request(app)
+}
 describe('/courses', () => {
     beforeAll(async () => {
-        await request(app).delete('/__test__/data')
+        await getRequest().delete('/__test__/data')
     })
 
 
     it('should return 200 and empty array', async () => {
         await request(app)
             .get('/courses')
-            .expect(200, [])
+            .expect(HTTP_STATUSES.OK_200, [])
     })
 
     it('should return 404 for not existing course', async () => {
         await request(app)
             .get('/courses/1')
-            .expect(404)
+            .expect(HTTP_STATUSES.NOT_FOUND_404)
     })
 
     it(`shouldn't create course with incorrect input data`, async () => {
